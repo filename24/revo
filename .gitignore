@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# only use pnpm
+package-lock.json
+yarn.lock
+
+# prisma
+src/generated
