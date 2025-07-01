@@ -1,39 +1,45 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Loader2 } from 'lucide-react';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Loader2 } from 'lucide-react'
 
+type Role = 'Student' | 'Parent' | 'Organization' | 'Admin'
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [role, setRole] = useState<'Student' | 'Parent' | 'Organization' | 'Admin'>('Student');
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [isLogin, setIsLogin] = useState(true)
+  const [role, setRole] = useState<Role>('Student')
+  const [userId, setUserId] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [phone, setPhone] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
 
-  const router = useRouter();
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!isLogin && password !== confirmPassword) {
-      setMessage('Нууц үг таарахгүй байна!');
-      return;
+      setMessage('Нууц үг таарахгүй байна!')
+      return
     }
 
-    setLoading(true);
-    setMessage('');
+    setLoading(true)
+    setMessage('')
     setTimeout(() => {
       console.log(isLogin ? 'Login Info:' : 'Register Info:', {
-        role, userId, password, phone,
-      });
-      setLoading(false);
-      setMessage(isLogin ? 'Амжилттай нэвтэрлээ!' : 'Бүртгэл амжилттай хийгдлээ.');
-    }, 1500);
-  };
+        role,
+        userId,
+        password,
+        phone
+      })
+      setLoading(false)
+      setMessage(
+        isLogin ? 'Амжилттай нэвтэрлээ!' : 'Бүртгэл амжилттай хийгдлээ.'
+      )
+    }, 1500)
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black px-4">
@@ -54,7 +60,7 @@ export default function AuthPage() {
             <select
               className="w-full p-2 rounded-lg bg-black border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
               value={role}
-              onChange={(e) => setRole(e.target.value as any)}
+              onChange={(e) => setRole(e.target.value as Role)}
             >
               <option value="Student">Сурагч</option>
               <option value="Parent">Эцэг эх</option>
@@ -132,7 +138,13 @@ export default function AuthPage() {
             disabled={loading}
             className="w-full bg-purple-600 hover:bg-purple-700 p-2 rounded-lg font-semibold flex items-center justify-center transition"
           >
-            {loading ? <Loader2 className="animate-spin w-5 h-5" /> : isLogin ? 'Нэвтрэх' : 'Бүртгүүлэх'}
+            {loading ? (
+              <Loader2 className="animate-spin w-5 h-5" />
+            ) : isLogin ? (
+              'Нэвтрэх'
+            ) : (
+              'Бүртгүүлэх'
+            )}
           </button>
         </form>
 
@@ -140,9 +152,9 @@ export default function AuthPage() {
           {isLogin ? 'Шинэ хэрэглэгч үү?' : 'Бүртгэлтэй хэрэглэгч үү?'}{' '}
           <button
             onClick={() => {
-              setIsLogin(!isLogin);
-              setRole('Student');
-              setMessage('');
+              setIsLogin(!isLogin)
+              setRole('Student')
+              setMessage('')
             }}
             className="text-purple-400 hover:text-purple-300 underline ml-1"
           >
@@ -151,5 +163,5 @@ export default function AuthPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

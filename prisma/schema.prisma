@@ -9,15 +9,31 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(ulid())
-  fisrname String
-  lastname String
+  id          String   @id @default(ulid())
+  fisrname    String
+  lastname    String
+  birthday    DateTime
+  role        Role     @default(STUDENT)
+  email       String?
+  phoneNumber String
+
   username String
-  birthday DateTime
-  role     Role     @default(USER)
+  password String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {
   ADMIN
-  USER
+  PARENT
+  STUDENT
+}
+
+model Organization {
+  id   String @id @default(ulid())
+  name String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

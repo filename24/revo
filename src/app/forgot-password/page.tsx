@@ -1,50 +1,50 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { Loader2, Lock, Phone, KeyRound } from 'lucide-react';
+import { useState } from 'react'
+import { Loader2, Lock, Phone, KeyRound } from 'lucide-react'
 
 export default function ForgotPasswordPage() {
-  const [phone, setPhone] = useState('');
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpCode, setOtpCode] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [phone, setPhone] = useState('')
+  const [otpSent, setOtpSent] = useState(false)
+  const [otpCode, setOtpCode] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
 
-  const isValidPhone = (phone: string) => /^([0-9]{8})$/.test(phone);
+  const isValidPhone = (phone: string) => /^([0-9]{8})$/.test(phone)
 
   const handleSendOTP = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!isValidPhone(phone)) {
-      setMessage('Утасны дугаар буруу байна.');
-      return;
+      setMessage('Утасны дугаар буруу байна.')
+      return
     }
 
-    setLoading(true);
-    setMessage('');
+    setLoading(true)
+    setMessage('')
     setTimeout(() => {
-      console.log('OTP илгээгдсэн:', phone);
-      setOtpSent(true);
-      setLoading(false);
-      setMessage('OTP код илгээгдлээ.');
-    }, 1500); // Simulate API
-  };
+      console.log('OTP илгээгдсэн:', phone)
+      setOtpSent(true)
+      setLoading(false)
+      setMessage('OTP код илгээгдлээ.')
+    }, 1500) // Simulate API
+  }
 
   const handleResetPassword = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (newPassword.length < 6) {
-      setMessage('Нууц үг дор хаяж 6 тэмдэгт байх ёстой.');
-      return;
+      setMessage('Нууц үг дор хаяж 6 тэмдэгт байх ёстой.')
+      return
     }
 
-    setLoading(true);
-    setMessage('');
+    setLoading(true)
+    setMessage('')
     setTimeout(() => {
-      console.log('Шинэ нууц үг:', { phone, otpCode, newPassword });
-      setLoading(false);
-      setMessage('Нууц үг амжилттай шинэчлэгдлээ.');
-    }, 1500); // Simulate API
-  };
+      console.log('Шинэ нууц үг:', { phone, otpCode, newPassword })
+      setLoading(false)
+      setMessage('Нууц үг амжилттай шинэчлэгдлээ.')
+    }, 1500) // Simulate API
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4">
@@ -78,7 +78,11 @@ export default function ForgotPasswordPage() {
               disabled={loading}
               className="w-full bg-purple-600 hover:bg-purple-700 p-2 rounded-lg font-semibold flex items-center justify-center transition"
             >
-              {loading ? <Loader2 className="animate-spin w-5 h-5" /> : 'OTP илгээх'}
+              {loading ? (
+                <Loader2 className="animate-spin w-5 h-5" />
+              ) : (
+                'OTP илгээх'
+              )}
             </button>
           </form>
         ) : (
@@ -118,11 +122,15 @@ export default function ForgotPasswordPage() {
               disabled={loading}
               className="w-full bg-green-600 hover:bg-green-700 p-2 rounded-lg font-semibold flex items-center justify-center transition"
             >
-              {loading ? <Loader2 className="animate-spin w-5 h-5" /> : 'Нууц үг шинэчлэх'}
+              {loading ? (
+                <Loader2 className="animate-spin w-5 h-5" />
+              ) : (
+                'Нууц үг шинэчлэх'
+              )}
             </button>
           </form>
         )}
       </div>
     </div>
-  );
+  )
 }
