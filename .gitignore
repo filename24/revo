@@ -51,3 +51,5 @@ src/generated
 # MCP server
 .cursor
 .gemini
+GEMINI.md
+CURSOR.md
