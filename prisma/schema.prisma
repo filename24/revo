@@ -9,19 +9,29 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(ulid())
-  fisrname    String
-  lastname    String
-  birthday    DateTime
-  role        Role     @default(STUDENT)
-  email       String?
-  phoneNumber String
+  id              String   @id @default(ulid())
+  name            String
+  fisrname        String
+  lastname        String
+  birthday        DateTime
+  displayUsername String?
+  role            Role     @default(STUDENT)
+  email           String?
+  phoneNumber     String
+  image           String?
 
-  username String
-  password String
+  username            String
+  password            String
+  emailVerified       Boolean
+  phoneNumberVerified Boolean?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  sessions Session[]
+  accounts Account[]
+
+  @@map("user")
 }
 
 enum Role {
@@ -30,10 +40,47 @@ enum Role {
   STUDENT
 }
 
-model Organization {
-  id   String @id @default(ulid())
-  name String
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
 }

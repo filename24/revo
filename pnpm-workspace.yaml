@@ -4,3 +4,5 @@ ignoredBuiltDependencies:
 onlyBuiltDependencies:
   - '@prisma/client'
   - '@tailwindcss/oxide'
+  - '@prisma/engines'
+  - prisma
