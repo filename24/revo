@@ -47,83 +47,83 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4">
-      <div className="bg-gray-900 text-white rounded-2xl shadow-xl w-full max-w-md p-8 animate-fade-in">
-        <h2 className="text-3xl font-bold text-center mb-6">Нууц үг сэргээх</h2>
+    <div className='flex min-h-screen items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black px-4'>
+      <div className='animate-fade-in w-full max-w-md rounded-2xl bg-gray-900 p-8 text-white shadow-xl'>
+        <h2 className='mb-6 text-center text-3xl font-bold'>Нууц үг сэргээх</h2>
 
         {message && (
-          <div className="mb-4 text-center text-sm text-purple-400">
+          <div className='mb-4 text-center text-sm text-purple-400'>
             {message}
           </div>
         )}
 
         {!otpSent ? (
-          <form onSubmit={handleSendOTP} className="space-y-4">
+          <form onSubmit={handleSendOTP} className='space-y-4'>
             <div>
-              <label className="block mb-1 font-medium">Утасны дугаар</label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <label className='mb-1 block font-medium'>Утасны дугаар</label>
+              <div className='relative'>
+                <Phone className='absolute top-2.5 left-3 h-5 w-5 text-gray-400' />
                 <input
-                  type="tel"
+                  type='tel'
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full pl-10 p-2 rounded-lg bg-black border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  placeholder="99112233"
+                  className='w-full rounded-lg border border-gray-600 bg-black p-2 pl-10 focus:ring-2 focus:ring-purple-600 focus:outline-none'
+                  placeholder='99112233'
                   required
                 />
               </div>
             </div>
             <button
-              type="submit"
+              type='submit'
               disabled={loading}
-              className="w-full bg-purple-600 hover:bg-purple-700 p-2 rounded-lg font-semibold flex items-center justify-center transition"
+              className='flex w-full items-center justify-center rounded-lg bg-purple-600 p-2 font-semibold transition hover:bg-purple-700'
             >
               {loading ? (
-                <Loader2 className="animate-spin w-5 h-5" />
+                <Loader2 className='h-5 w-5 animate-spin' />
               ) : (
                 'OTP илгээх'
               )}
             </button>
           </form>
         ) : (
-          <form onSubmit={handleResetPassword} className="space-y-4">
+          <form onSubmit={handleResetPassword} className='space-y-4'>
             <div>
-              <label className="block mb-1 font-medium">OTP код</label>
-              <div className="relative">
-                <KeyRound className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <label className='mb-1 block font-medium'>OTP код</label>
+              <div className='relative'>
+                <KeyRound className='absolute top-2.5 left-3 h-5 w-5 text-gray-400' />
                 <input
-                  type="text"
+                  type='text'
                   value={otpCode}
                   onChange={(e) => setOtpCode(e.target.value)}
-                  className="w-full pl-10 p-2 rounded-lg bg-black border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  placeholder="123456"
+                  className='w-full rounded-lg border border-gray-600 bg-black p-2 pl-10 focus:ring-2 focus:ring-purple-600 focus:outline-none'
+                  placeholder='123456'
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block mb-1 font-medium">Шинэ нууц үг</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+              <label className='mb-1 block font-medium'>Шинэ нууц үг</label>
+              <div className='relative'>
+                <Lock className='absolute top-2.5 left-3 h-5 w-5 text-gray-400' />
                 <input
-                  type="password"
+                  type='password'
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full pl-10 p-2 rounded-lg bg-black border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-600"
-                  placeholder="•••••••"
+                  className='w-full rounded-lg border border-gray-600 bg-black p-2 pl-10 focus:ring-2 focus:ring-green-600 focus:outline-none'
+                  placeholder='•••••••'
                   required
                 />
               </div>
             </div>
 
             <button
-              type="submit"
+              type='submit'
               disabled={loading}
-              className="w-full bg-green-600 hover:bg-green-700 p-2 rounded-lg font-semibold flex items-center justify-center transition"
+              className='flex w-full items-center justify-center rounded-lg bg-green-600 p-2 font-semibold transition hover:bg-green-700'
             >
               {loading ? (
-                <Loader2 className="animate-spin w-5 h-5" />
+                <Loader2 className='h-5 w-5 animate-spin' />
               ) : (
                 'Нууц үг шинэчлэх'
               )}
