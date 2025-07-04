@@ -7,18 +7,18 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: __dirname
 })
 
 const eslintConfig = [
   {
-    ignores: ['src/generated/**'],
+    ignores: ['src/generated/**']
   },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   ...compat.extends('plugin:prettier/recommended'),
   {
     plugins: {
-      'unused-imports': unusedImports,
+      'unused-imports': unusedImports
     },
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
@@ -29,12 +29,12 @@ const eslintConfig = [
           vars: 'all',
           varsIgnorePattern: '^_',
           args: 'after-used',
-          argsIgnorePattern: '^_',
-        },
+          argsIgnorePattern: '^_'
+        }
       ],
-      'prettier/prettier': 'warn',
-    },
-  },
+      'prettier/prettier': 'warn'
+    }
+  }
 ]
 
 export default eslintConfig
