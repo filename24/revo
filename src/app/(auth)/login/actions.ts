@@ -2,7 +2,7 @@
 
 import { signIn } from '@/lib/auth'
 
-export async function login(state: any, formData: FormData) {
+export async function login(state: unknown, formData: FormData) {
   let response: { error: string } | undefined
   const username = formData.get('username') as string
   const password = formData.get('password') as string
@@ -22,6 +22,10 @@ export async function login(state: any, formData: FormData) {
       if (error.cause === 404 || error.cause === 401)
         return {
           error: 'Хэрэглэгчийн нэр эсвэл нууц үг буруу байна.'
+        }
+      else
+        return {
+          error: 'Серверт алдаа гарлаа. Та дараа дахин оролдон уу.'
         }
     }
   }
