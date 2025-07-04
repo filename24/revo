@@ -54,7 +54,6 @@ export const auth = betterAuth({
 })
 
 const authClient = createAuthClient({
-  baseURL: process.env.VERCEL_URL ?? process.env.BETTER_AUTH_URL,
   plugins: [
     usernameClient(),
     phoneNumberClient(),
