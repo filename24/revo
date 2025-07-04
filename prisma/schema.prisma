@@ -11,17 +11,16 @@ datasource db {
 model User {
   id              String   @id @default(ulid())
   name            String
-  fisrname        String
+  firstname       String
   lastname        String
   birthday        DateTime
   displayUsername String?
   role            Role     @default(STUDENT)
-  email           String?
+  email           String
   phoneNumber     String
   image           String?
 
   username            String
-  password            String
   emailVerified       Boolean
   phoneNumberVerified Boolean?
 
