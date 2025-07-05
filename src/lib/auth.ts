@@ -19,6 +19,11 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: true
   },
+  onAPIError: {
+    onError(error) {
+      console.error('Auth error: ', error)
+    }
+  },
   database: prismaAdapter(prisma, {
     provider: 'postgresql'
   }),
