@@ -12,7 +12,7 @@ export async function login(state: unknown, formData: FormData) {
       { username, password },
       {
         onError(context) {
-          console.log(context.error)
+          console.error('Signin error: ', context)
           throw Error(context.error.statusText, { cause: context.error.status })
         }
       }

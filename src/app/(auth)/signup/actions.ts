@@ -56,7 +56,7 @@ export async function signup(
       },
       {
         onError(context) {
-          console.error('SignUp Error:', context.error)
+          console.error('SignUp Error:', context)
           throw new Error(context.error.message)
         }
       }
