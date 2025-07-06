@@ -1,4 +1,4 @@
-'use server'
+'use client'
 
 import { signUp } from '@/lib/auth'
 import { SignupSchema } from '@/schemas/auth'
